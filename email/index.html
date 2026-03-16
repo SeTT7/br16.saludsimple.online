@@ -1,203 +1,152 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="prefetch" href="https://br16.saludsimple.online/pv">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrivez-vous - Cours de Paysagisme Digital</title>
+    <meta name="description" content="accéder au contenu">
+    <title>Exclusive Content</title>
+    
+    <!-- Pré-carregamento de recursos essenciais -->
+    <link rel="preload" href="https://scripts.converteai.net/c7daae54-28f8-4e09-90be-5fed14986104/players/67d20d15b7ef8e55f55e284e/v4/player.js" as="script">
+    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload" href="https://cdn.converteai.net/c7daae54-28f8-4e09-90be-5fed14986104/67d0ec6327e969e4dd7cee46/main.m3u8" as="fetch">
+    
+    <!-- Pré-conexão para melhor performance -->
+    <link rel="dns-prefetch" href="https://cdn.converteai.net">
+    <link rel="dns-prefetch" href="https://scripts.converteai.net">
+    <link rel="dns-prefetch" href="https://images.converteai.net">
+    <link rel="dns-prefetch" href="https://api.vturb.com.br">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000000;
+        padding: 20px;
+        line-height: 1.5;
+    }
+
+    .age-verification-container {
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .verification-title {
+        color: #cc0000;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
+    .verification-instruction {
+        color: #ffffff;
+        font-size: 21px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .quote-author {
+        display: block;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #cccccc;
+    }
+
+    .primary-button, 
+    #verification-cta-button {
+        background-color: #cc0000;
+        color: #ffffff;
+        border: none;
+        padding: 12px 40px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 8px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+
+    .primary-button:hover, 
+    #verification-cta-button:hover {
+        background-color: #b30000;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .cta-button-container {
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @keyframes fadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(10px); 
         }
-        
-        body {
-            background-color: #051428;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
         }
-        
-        .container {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .image-container {
-            width: 100%;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-        }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        h1 {
-            font-size: 24px;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            font-weight: 600;
-        }
-        
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-        }
-        
-        label {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        .email-input {
-            padding: 16px;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #051428;
-        }
-        
-        .btn {
-            background-color: #ff4081;
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 100%;
-        }
-        
-        .btn:hover {
-            background-color: #e91e63;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .success-message {
-            display: none;
-            background-color: rgba(76, 175, 80, 0.2);
-            border: 1px solid #4CAF50;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .success-message p {
-            font-size: 18px;
-            color: #4CAF50;
-            font-weight: 500;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @media (min-width: 768px) {
-            .form-container {
-                flex-direction: row;
-            }
-            
-            .input-group {
-                flex: 1;
-            }
-            
-            .btn {
-                width: auto;
-                margin-top: 28px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 22px;
-            }
-            
-            .image-container {
-                height: 200px;
-            }
-            
-            .email-input, .btn {
-                padding: 14px 20px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Inscrivez-vous en entrant votre email ci-dessous</h1>
-        
-        <div class="form-container">
-            <div class="input-group">
-                <label for="email">Votre email principal</label>
-                <input type="email" id="email" class="email-input" placeholder="Votre meilleur email">
-            </div>
-            <button class="btn" id="submit-btn">Envoyer</button>
-        </div>
-        
-        <div class="success-message" id="success-message">
-            <p>Parfait, il ne vous reste plus qu'à vérifier votre email !</p>
-        </div>
-    </div>
+    <!-- Conteúdo principal da página -->
+<main class="age-verification-container">
+    <h1 class="verification-title">CONTENU EXCLUSIF</h1>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const submitBtn = document.getElementById('submit-btn');
-            const successMessage = document.getElementById('success-message');
-            const emailInput = document.getElementById('email');
-            
-            submitBtn.addEventListener('click', function() {
-                if (emailInput.value === '' || !emailInput.value.includes('@')) {
-                    emailInput.style.border = '2px solid #ff4081';
-                    emailInput.placeholder = 'Veuillez saisir un email valide';
-                    return;
-                }
-                
-                // Cacher le formulaire et afficher le message de succès
-                document.querySelector('.form-container').style.display = 'none';
-                successMessage.style.display = 'block';
-            });
-            
-            // Supprimer la mise en évidence de l'erreur lorsque l'utilisateur commence à taper
-            emailInput.addEventListener('input', function() {
-                emailInput.style.border = 'none';
-            });
-        });
-    </script>
+    <p class="verification-instruction">
+        « Cette astuce a déjà aidé des milliers d’hommes. »
+        <span class="quote-author">– Michel S.</span>
+    </p>
+    
+    <div class="cta-button-container"> 
+        <a href="#" id="verification-cta-button" class="primary-button">
+            REGARDER MAINTENANT
+        </a>
+    </div>
+</main>
+
+<script>
+document.getElementById("verification-cta-button")
+  .addEventListener("click", async function(e) {
+
+    e.preventDefault();
+
+    const currentParams = window.location.search;
+
+    const response = await fetch(
+      "https://",
+      { method: "POST" }
+    );
+
+    if (response.redirected) {
+      window.location.href = response.url + currentParams;
+    }
+});
+</script>
+
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
 </body>
 </html>
