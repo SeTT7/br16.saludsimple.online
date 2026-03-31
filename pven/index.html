@@ -961,18 +961,7 @@
 <script> 
   ttq.track('PageView');
 </script>
-<script>
-setTimeout(function () {
-  ttq.track('Lead');
-}, 1320000);
-</script>
-<script>
-document.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href*="https://pay.mycheckoutt.com"], a[href*="https://go.centerpag.com"]');
-    if (!link) return;
-    ttq.track('InitiateCheckout');
-}, true);
-</script>
+
 
 
 </body></html>
